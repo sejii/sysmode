@@ -1,0 +1,11 @@
+[PropertyInfo]
+fOrderData,Vector,false,false, , ,false,<default>
+fOrderHeader,Vector,false,false, , ,false,<default>
+fOrderHeaderData,Object[],false,false, , ,false,<default>
+fOrderScrollPane,JScrollPane,false,false, , ,false,<default>
+fOrderTable,UTable,false,false, , ,false,<default>
+[IconNames]
+
+
+
+

@@ -1,0 +1,7 @@
+# Time series of the price used in UMIE.
+maxDate 60
+numOfSessionsPerDay 4
+up ascending.csv 1
+down descending.csv 1
+reverse reversal.csv 1
+oscillation oscillation.csv 1

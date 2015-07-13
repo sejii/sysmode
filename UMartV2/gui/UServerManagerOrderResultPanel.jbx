@@ -1,0 +1,22 @@
+[PropertyInfo]
+fAbbrLabel,JLabel,false,false, , ,false,<デフォルト >
+fCurrentIndex,int,false,false, , ,false,<デフォルト >
+fIsUpdating,boolean,false,false, , ,false,<デフォルト >
+fOrderResultData,Vector,false,false, , ,false,<デフォルト >
+fOrderResultHeader,Vector,false,false, , ,false,<デフォルト >
+fOrderResultHeaderData,Object[],false,false, , ,false,<デフォルト >
+fOrderResultHistory,ArrayList,false,false, , ,false,<デフォルト >
+fOrderResultScrollPane,JScrollPane,false,false, , ,false,<デフォルト >
+fOrderResultTable,UTable,false,false, , ,false,<デフォルト >
+fSelectUserLabel,JLabel,false,false, , ,false,<デフォルト >
+fTargetUserID,int,false,false, , ,false,<デフォルト >
+fUserList,JList,false,false, , ,false,<デフォルト >
+fUserListModel,DefaultListModel,false,false, , ,false,<デフォルト >
+fUserListScrollPane,JScrollPane,false,false, , ,false,<デフォルト >
+targetUserID,int,false,false, , ,true,<デフォルト >
+updaing,boolean,false,false, , ,true,<デフォルト >
+[IconNames]
+
+
+
+

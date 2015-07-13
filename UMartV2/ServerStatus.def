@@ -1,0 +1,6 @@
+CommandName ServerStatus
+return HashMap data サーバー状態 {
+	int date 現在の日付（U-Mart暦)
+	int board_no 現在の板寄せ回数
+	int state 時間帯
+}

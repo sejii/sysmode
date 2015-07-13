@@ -1,0 +1,4 @@
+# 記述方法：<ログイン名>　<パッケージまで含めたエージェントのクラス名>
+MyStrategy1 strategy.RandomStrategy
+MyStrategy2 strategy.SRandomStrategy
+

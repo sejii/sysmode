@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+  <!--JBuilder Library Definition File-->
+  <fullname>MyStrategy</fullname>
+  <class>
+    <path>../MyStrategy</path>
+  </class>
+  <source>
+    <path>../MyStrategy/src</path>
+  </source>
+  <required>JUnit</required>
+  <lastmodsaved>1123575726968</lastmodsaved>
+</library>

@@ -1,0 +1,4 @@
+Nickname,Filename,BrandName,StartStep,MaxDate,NoOfSessionsPerDay
+Default,resource:j30.csv,J30,120,30,8
+Ex1,resource:j30.csv,J30,340,20,4
+Ex2,resource:j30.csv,J30,400,10,8

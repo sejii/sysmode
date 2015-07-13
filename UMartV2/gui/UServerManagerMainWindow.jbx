@@ -1,0 +1,31 @@
+[PropertyInfo]
+CProtocol,CProtocolCore,false,false, , ,true,<デフォルト >
+fChartPanel,UServerManagerChartPanel,false,false, , ,false,<デフォルト >
+fCProtocol,CProtocolCore,false,false, , ,false,<デフォルト >
+fExchangeInfoPanel,UServerManagerExchangeInfoPanel,false,false, , ,false,<デフォルト >
+fMainTabbedPane,JTabbedPane,false,false, , ,false,<デフォルト >
+fOrderResultPanel,UServerManagerOrderResultPanel,false,false, , ,false,<デフォルト >
+fPositionPanel,UServerManagerPositionPanel,false,false, , ,false,<デフォルト >
+fProfitPanel,UServerManagerProfitPanel,false,false, , ,false,<デフォルト >
+fRb,ResourceBundle,false,false, , ,false,<デフォルト >
+fServerManagerBoardPanel,UServerManagerBoardPanel,false,false, , ,false,<デフォルト >
+fServerManagerMembersInfoTablePanel,UServerManagerMembersInfoTablePanel,false,false, , ,false,<デフォルト >
+fServerManagerTopPanel,UServerManagerTopPanel,false,false, , ,false,<デフォルト >
+fServerSystemOutPanel,UServerSystemOutPanel,false,false, , ,false,<デフォルト >
+fUGUI,IGUI,false,false, , ,false,<デフォルト >
+fUpdateTimer,javax.swing.Timer,false,false, , ,false,<デフォルト >
+jMenuBar1,JMenuBar,false,false, , ,false,<デフォルト >
+jMenuFile,JMenu,false,false, , ,false,<デフォルト >
+jMenuFileExit,JMenuItem,false,false, , ,false,<デフォルト >
+jMenuHelp,JMenu,false,false, , ,false,<デフォルト >
+jMenuHelpAbout,JMenuItem,false,false, , ,false,<デフォルト >
+jMenuHelpDownload,JMenuItem,false,false, , ,false,<デフォルト >
+jMenuHelpManual,JMenuItem,false,false, , ,false,<デフォルト >
+jMenuHelpReport,JMenuItem,false,false, , ,false,<デフォルト >
+jMenuHelpTutorial,JMenuItem,false,false, , ,false,<デフォルト >
+timer,javax.swing.Timer,false,false, , ,true,<デフォルト >
+[IconNames]
+
+
+
+

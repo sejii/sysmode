@@ -1,0 +1,10 @@
+[PropertyInfo]
+fDecorator,USortDecorator,false,false, , ,false,<デフォルト >
+fIsAscending,boolean,false,false, , ,false,<デフォルト >
+fSortedColumn,int,false,false, , ,false,<デフォルト >
+model,TableModel,false,false, , ,true,<デフォルト >
+[IconNames]
+
+
+
+

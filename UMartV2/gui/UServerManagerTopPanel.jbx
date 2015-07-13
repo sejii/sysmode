@@ -1,0 +1,23 @@
+[PropertyInfo]
+fAutoUpdateCheckBox,JCheckBox,false,false, , ,false,<デフォルト >
+fAutoUpdatePanel,JPanel,false,false, , ,false,<デフォルト >
+fBoardLabel,JLabel,false,false, , ,false,<デフォルト >
+fBoardTextField,UValueLabel,false,false, , ,false,<デフォルト >
+fDayLabel,JLabel,false,false, , ,false,<デフォルト >
+fDayTextField,UValueLabel,false,false, , ,false,<デフォルト >
+fFuturePriceLabel,JLabel,false,false, , ,false,<デフォルト >
+fFuturePriceTextField,UValueLabel,false,false, , ,false,<デフォルト >
+fIntervalTextField,JTextField,false,false, , ,false,<デフォルト >
+fIsAuto,boolean,false,false, , ,false,<デフォルト >
+fSec,JLabel,false,false, , ,false,<デフォルト >
+fSecond,JLabel,false,false, , ,false,<デフォルト >
+fSpotPriceLabel,JLabel,false,false, , ,false,<デフォルト >
+fSpotPriceTextField,UValueLabel,false,false, , ,false,<デフォルト >
+fUpdateButton,JButton,false,false, , ,false,<デフォルト >
+fUpdateTimer,javax.swing.Timer,false,false, , ,false,<デフォルト >
+timer,javax.swing.Timer,false,false, , ,true,<デフォルト >
+[IconNames]
+
+
+
+

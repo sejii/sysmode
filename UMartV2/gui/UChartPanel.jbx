@@ -1,0 +1,14 @@
+[PropertyInfo]
+fCurrentStep,int,false,false, , ,false,<デフォルト >
+fFutureLineColor,Color,false,false, , ,false,<デフォルト >
+fFutureLineName,String,false,false, , ,false,<デフォルト >
+fFuturePriceData,ArrayList,false,false, , ,false,<デフォルト >
+fSpotLineColor,Color,false,false, , ,false,<デフォルト >
+fSpotLineName,String,false,false, , ,false,<デフォルト >
+fSpotPriceData,ArrayList,false,false, , ,false,<デフォルト >
+hold,ArrayList,false,false, , ,false,<デフォルト >
+[IconNames]
+
+
+
+

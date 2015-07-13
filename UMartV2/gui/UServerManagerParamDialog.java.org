@@ -1,0 +1,453 @@
+/**
+ * @(#)UParamDialog.java
+ *
+ * Copyright (c) 2003 Naoki Mori
+ * Copyright (c) 2003 U-Mart Project
+ *
+ * Permission is hereby granted, free of charge, to any person obtainings
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * ---------------------------------------------------------------------
+ *
+ * UParamDialog.java   2003/05/05
+ * パラメータ入力用ダイアログ.<br>
+ * @author Naoki Mori
+ */
+
+package gui;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import java.io.File;
+import java.util.*;
+import log.UTimeSeriesDefinitionLog;
+import java.net.URL;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.io.FileReader;
+import log.UInstitutionLog;
+
+public class UServerManagerParamDialog extends JDialog {
+
+  JPanel contentPane;
+  BorderLayout borderLayout1 = new BorderLayout();
+  JPanel fBasePanel = new JPanel();
+  JComboBox fDataComboBox = new JComboBox();
+  JLabel fDataPanel = new JLabel();
+  JPanel fDatePanel = new JPanel();
+  TitledBorder titledBorder1;
+  JLabel fDaysLabel = new JLabel();
+  JLabel fStartLabel = new JLabel();
+  JTextField fStartTextField = new JTextField();
+  JTextField fDaysTextField = new JTextField();
+  JTextField fBoardPerDayTextField = new JTextField();
+  JLabel fBoardPerDayLabel = new JLabel();
+  JButton fAgentButton = new JButton();
+  JButton fOKButton = new JButton();
+  JButton fQuitButton = new JButton();
+  TitledBorder titledBorder2;
+  protected UParameters fParam = UParameters.getInstance();
+  // JButton fTabSettingButton = new JButton();
+  ResourceBundle fRb = UParameters.fRb;
+  JCheckBox fLogCheckBox = new JCheckBox();
+  // JButton fInstitutionSettingButton = new JButton();
+  JPanel fSeedPanel = new JPanel();
+  JRadioButton fAutoSeedButton = new JRadioButton();
+  JTextField fSeedTextField = new JTextField();
+  JRadioButton fSetSeedButton = new JRadioButton();
+  ButtonGroup fSeedButtonGroup = new ButtonGroup();
+  JButton fDefaultButton = new JButton();
+  JButton fFileButton = new JButton();
+  JFileChooser fFileChooser = new JFileChooser();
+  UTimeSeriesDefinitionLog fTimeSeriesDefinitions;
+  UInstitutionLog fInstitution;
+  JLabel fBrandNameLabel = new JLabel();
+  JLabel fFileNameLabel = new JLabel();
+  boolean fStatus = false;
+
+  public UServerManagerParamDialog(Frame frame, String title, boolean modal) {
+    super(frame, title, modal);
+  }
+
+  public UServerManagerParamDialog() {
+    this(null, UParameters.fRb.getString("SETTING"), true);
+    try {
+      jbInit();
+      pack();
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  //コンポーネントの初期化
+  private void jbInit() throws Exception {
+    // 現物価格データラベルの設定
+    fDataPanel.setText(fRb.getString("SPOT_PRICE_DATA"));
+    fDataPanel.setForeground(Color.black);
+    fDataPanel.setBounds(new Rectangle(29, 9, 113, 17));
+    // 現物価格データComboBoxの設定
+    fDataComboBox.setRequestFocusEnabled(false);
+    fDataComboBox.setBounds(new Rectangle(143, 7, 92, 21));
+    fDataComboBox.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        String nickname = (String)fDataComboBox.getSelectedItem();
+        setupTimeSeriesInfo(nickname);
+      }
+    });
+    fDataComboBox.setBackground(Color.white);
+    // 現物価格データ情報読み込み用ファイルボタンの設定
+    fFileButton.setBounds(new Rectangle(237, 6, 67, 22));
+    fFileButton.setBorder(BorderFactory.createRaisedBevelBorder());
+    fFileButton.setText(fRb.getString("FILE"));
+    fFileButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        int state = fFileChooser.showOpenDialog(null);
+        if (state == JFileChooser.CANCEL_OPTION) {
+          return;
+        }
+        File file = fFileChooser.getSelectedFile();
+        try {
+          readTimeSeriesDefinitions(file);
+        } catch (IOException ioex) {
+          ioex.printStackTrace();
+          System.exit(5);
+        }
+        setupDataComboBox();
+      }
+    });
+    // 銘柄名Labelの設定
+    fBrandNameLabel.setBounds(new Rectangle(17, 16, 248, 17));
+    fBrandNameLabel.setForeground(Color.black);
+    fBrandNameLabel.setText(fRb.getString("BRAND_NAME"));
+    // ファイル名Labelの設定
+    fFileNameLabel.setText(fRb.getString("BRAND_NAME"));
+    fFileNameLabel.setForeground(Color.black);
+    fFileNameLabel.setBounds(new Rectangle(17, 36, 248, 17));
+    fFileNameLabel.setText(fRb.getString("FILENAME"));
+    fFileNameLabel.setForeground(Color.black);
+    fFileNameLabel.setBounds(new Rectangle(17, 41, 248, 17));
+    // 取引日数Labelの設定
+    fDaysLabel.setText(fRb.getString("TRADING_DAYS"));
+    fDaysLabel.setForeground(Color.black);
+    fDaysLabel.setBounds(new Rectangle(17, 66, 146, 17));
+    // 取引日数TextFieldの設定
+    fDaysTextField.setHorizontalAlignment(SwingConstants.RIGHT);
+    fDaysTextField.setBounds(new Rectangle(165, 62, 58, 21));
+    // １日の板寄せ回数Labelの設定
+    fBoardPerDayLabel.setText(fRb.getString("TRANSACTION_PER_DAY"));
+    fBoardPerDayLabel.setForeground(Color.black);
+    fBoardPerDayLabel.setBounds(new Rectangle(17, 90, 146, 17));
+    // １日の板寄せ回数TextFieldの設定
+    fBoardPerDayTextField.setHorizontalAlignment(SwingConstants.RIGHT);
+    fBoardPerDayTextField.setBounds(new Rectangle(165, 88, 58, 21));
+    // 開始ステップLabelの設定
+    fStartLabel.setText(fRb.getString("START_STEP"));
+    fStartLabel.setForeground(Color.black);
+    fStartLabel.setBounds(new Rectangle(17, 115, 146, 17));
+    // 開始ステップTextFieldの設定
+    fStartTextField.setHorizontalAlignment(SwingConstants.RIGHT);
+    fStartTextField.setBounds(new Rectangle(165, 115, 58, 21));
+    // 決済ステップパネルの設定
+    titledBorder1 = new TitledBorder(BorderFactory.createEtchedBorder(Color.white, new Color(148, 145, 140)), fRb.getString("STEP_OF_SETTLEMENT"));
+    titledBorder1.setTitleColor(Color.black);
+    fDatePanel.setBorder(titledBorder1);
+    fDatePanel.setToolTipText("");
+    fDatePanel.setBounds(new Rectangle(27, 38, 274, 144));
+    fDatePanel.setLayout(null);
+    fDatePanel.add(fStartLabel, null);
+    fDatePanel.add(fStartTextField, null);
+    fDatePanel.add(fBoardPerDayLabel, null);
+    fDatePanel.add(fBoardPerDayTextField, null);
+    fDatePanel.add(fDaysLabel, null);
+    fDatePanel.add(fDaysTextField, null);
+    fDatePanel.add(fBrandNameLabel, null);
+    fDatePanel.add(fFileNameLabel, null);
+    fDatePanel.add(fFileNameLabel, null);
+    // システム時刻使用設定ボタンの設定
+    fAutoSeedButton.setToolTipText("");
+    fAutoSeedButton.setText(fRb.getString("USE_SYSTEM_CLOCK"));
+    fAutoSeedButton.setBounds(new Rectangle(25, 20, 158, 25));
+    fAutoSeedButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        fSeedTextField.setEditable(false);
+        fParam.setIsSeed(false);
+      }
+    });
+    fSeedButtonGroup.add(fAutoSeedButton);
+    // シード指定ボタンの設定
+    fSetSeedButton.setText(fRb.getString("PROVIDE_A_SEED"));
+    fSetSeedButton.setBounds(new Rectangle(25, 45, 144, 25));
+    fSetSeedButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        fSeedTextField.setEditable(true);
+        fParam.setIsSeed(true);
+        long seed;
+        try {
+          seed = Long.parseLong(fSeedTextField.getText());
+        } catch (Exception ex) {
+          fSeedTextField.setText(String.valueOf(UParameters.DEFAULT_SEED));
+          seed = UParameters.DEFAULT_SEED;
+        }
+        fParam.setSeed(seed);
+      }
+    });
+    // シード指定TextFieldの設定
+    fSeedTextField.setHorizontalAlignment(SwingConstants.RIGHT);
+    fSeedTextField.setBounds(new Rectangle(50, 74, 63, 21));
+    fSeedTextField.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        long seed;
+        try {
+          seed = Long.parseLong(fSeedTextField.getText().trim());
+        } catch (Exception ex) {
+          JOptionPane.showMessageDialog(UServerManagerParamDialog.this,
+                                        "A numerical value is needed.");
+          return;
+        }
+        fParam.setSeed(seed);
+        fSetSeedButton.requestFocus();
+      }
+    });
+    fSeedButtonGroup.add(fSetSeedButton);
+    // 乱数シードパネルの設定
+    fSeedPanel.setBounds(new Rectangle(60, 189, 216, 106));
+    fSeedPanel.setLayout(null);
+    titledBorder2 = new TitledBorder(BorderFactory.createEtchedBorder(Color.
+        white, new Color(148, 145, 140)), fRb.getString("RANDOM_SEED"));
+    titledBorder2.setTitleColor(Color.black);
+    fSeedPanel.setBorder(titledBorder2);
+    fSeedPanel.add(fAutoSeedButton, null);
+    fSeedPanel.add(fSetSeedButton, null);
+    fSeedPanel.add(fSeedTextField, null);
+    // エージェント設定ボタンの設定
+    fAgentButton.setBounds(new Rectangle(33, 308, 124, 27));
+    fAgentButton.setBorder(BorderFactory.createRaisedBevelBorder());
+    fAgentButton.setText(fRb.getString("AGENT_SETTING"));
+    fAgentButton.setForeground(Color.black);
+    fAgentButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        UAgentDialog jd = new UAgentDialog();
+        jd.setLocationRelativeTo(UServerManagerParamDialog.this);
+        jd.pack();
+        jd.setVisible(true);
+      }
+    });
+    /*
+    // 制度設定ボタンの設定
+    fInstitutionSettingButton.setBounds(new Rectangle(171, 308, 124, 27));
+    fInstitutionSettingButton.setBorder(BorderFactory.createRaisedBevelBorder());
+    fInstitutionSettingButton.setForeground(Color.black);
+    fInstitutionSettingButton.setText(fRb.getString("INSTITUTION_SETTING"));
+    fInstitutionSettingButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        UNewInstitutionSettingDialog jd = new UNewInstitutionSettingDialog();
+        jd.setLocationRelativeTo(UServerManagerParamDialog.this);
+        jd.pack();
+        jd.setVisible(true);
+      }
+    });
+    */
+    // ログ作成CheckBoxの設定
+    fLogCheckBox.setText(fRb.getString("CREATE_LOGS"));
+    fLogCheckBox.setBounds(new Rectangle(174, 309, 113, 25));
+    /*
+    // 表示タブ設定ボタンの設定
+    fTabSettingButton.setText(fRb.getString("TAB_SETTING"));
+    fTabSettingButton.setForeground(Color.black);
+    fTabSettingButton.setBorder(BorderFactory.createRaisedBevelBorder());
+    fTabSettingButton.setBounds(new Rectangle(172, 344, 124, 27));
+    fTabSettingButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        UTabSettingDialog jd = new UTabSettingDialog( (Frame)null, true);
+        jd.setLocationRelativeTo(UServerManagerParamDialog.this);
+        jd.pack();
+        jd.setVisible(true);
+      }
+    });
+    */
+    // OKボタンの設定
+    fOKButton.setBounds(new Rectangle(18, 353, 79, 27));
+    fOKButton.setBorder(BorderFactory.createRaisedBevelBorder());
+    fOKButton.setText("OK");
+    fOKButton.setForeground(Color.black);
+    fOKButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        String nickname = (String) fDataComboBox.getSelectedItem();
+        HashMap timeSeriesDef = fTimeSeriesDefinitions.getDefinition(nickname);
+        fParam.setBrand( (String) timeSeriesDef.get(UTimeSeriesDefinitionLog.STRING_BRAND_NAME));
+        fParam.setPriceFile( (String) timeSeriesDef.get(
+            UTimeSeriesDefinitionLog.STRING_FILENAME));
+        fParam.setLogCreate(fLogCheckBox.isSelected());
+        fParam.setDays(Integer.parseInt(fDaysTextField.getText()));
+        fParam.setStartPoint(Integer.parseInt(fStartTextField.getText()));
+        fParam.setBoardPerDay(Integer.parseInt(fBoardPerDayTextField.getText()));
+        if (fAutoSeedButton.isSelected()) {
+          fParam.setSeed(System.currentTimeMillis());
+        } else {
+          fParam.setSeed(Long.parseLong(fSeedTextField.getText()));
+        }
+        fStatus = true;
+        setVisible(false);
+        dispose();
+      }
+    });
+    // 中止ボタンの設定
+    fQuitButton.setBounds(new Rectangle(119, 353, 79, 27));
+    fQuitButton.setBorder(BorderFactory.createRaisedBevelBorder());
+    fQuitButton.setText(fRb.getString("QUIT"));
+    fQuitButton.setForeground(Color.black);
+    fQuitButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        fStatus = false;
+        setVisible(false);
+        dispose();
+      }
+    });
+    // 初期値設定ボタンの設定
+    fDefaultButton.setForeground(Color.black);
+    fDefaultButton.setText(fRb.getString("DEFAULT"));
+    fDefaultButton.setBorder(BorderFactory.createRaisedBevelBorder());
+    fDefaultButton.setBounds(new Rectangle(220, 354, 79, 27));
+    fDefaultButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        setDefault();
+      }
+    });
+    // BasePanelの設定
+    fBasePanel.setBorder(BorderFactory.createEtchedBorder());
+    fBasePanel.setLayout(null);
+    // fBasePanel.add(fTabSettingButton, null);
+    // fBasePanel.add(fInstitutionSettingButton, null);
+    fBasePanel.add(fAgentButton, null);
+    fBasePanel.add(fSeedPanel, null);
+    fBasePanel.add(fDataPanel, null);
+    fBasePanel.add(fDatePanel, null);
+    fBasePanel.add(fDataComboBox, null);
+    fBasePanel.add(fFileButton, null);
+    fBasePanel.add(fLogCheckBox, null);
+    fBasePanel.add(fDefaultButton, null);
+    fBasePanel.add(fOKButton, null);
+    fBasePanel.add(fQuitButton, null);
+    // Dialog全体の設定
+    contentPane = (JPanel)this.getContentPane();
+    contentPane.setLayout(borderLayout1);
+    contentPane.setPreferredSize(new Dimension(340, 430));
+    contentPane.add(fBasePanel, BorderLayout.CENTER);
+    this.setModal(true);
+    this.setResizable(false);
+    this.setTitle(fRb.getString("SETTING"));
+    // デフォルトに設定
+    setDefault();
+  }
+
+  public boolean getStatus() {
+    return fStatus;
+  }
+
+  public void setDefault() {
+    fSeedTextField.setEditable(UParameters.DEFAULT_IS_SEED);
+    fSeedTextField.setText(String.valueOf(UParameters.DEFAULT_SEED));
+    fAutoSeedButton.setSelected(!UParameters.DEFAULT_IS_SEED);
+    fSetSeedButton.setSelected(UParameters.DEFAULT_IS_SEED);
+    fTimeSeriesDefinitions = fParam.getTimeSeriesDefinitionLog();
+    try {
+      readTimeSeriesDefinitions(UParameters.TIME_SERIES_DEFINITIONS);
+    } catch (IOException ioex) {
+      ioex.printStackTrace();
+      System.exit(5);
+    }
+    setupDataComboBox();
+    setupDefaultInstitution();
+    fLogCheckBox.setSelected(UParameters.DEFAULT_IS_LOG_CREATE);
+  }
+
+  private void setupDataComboBox() {
+    fDataComboBox.removeAllItems();
+    Iterator itr = fTimeSeriesDefinitions.getTimeSeriesDefinitions();
+    while (itr.hasNext()) {
+      HashMap info = (HashMap) itr.next();
+      String nickName = info.get(UTimeSeriesDefinitionLog.STRING_NICKNAME).
+          toString();
+      fDataComboBox.addItem(nickName);
+    }
+    String nickname = (String) fDataComboBox.getSelectedItem();
+    setupTimeSeriesInfo(nickname);
+  }
+
+  private void readTimeSeriesDefinitions(String resourceName) throws
+      IOException {
+    URL timeSeriesDefinitionsURL = getClass().getResource(resourceName);
+    BufferedReader br = new BufferedReader(new InputStreamReader(
+        timeSeriesDefinitionsURL.openStream()));
+    fTimeSeriesDefinitions.readFrom(br);
+    br.close();
+  }
+
+  private void readTimeSeriesDefinitions(File file) throws IOException {
+    BufferedReader br = new BufferedReader(new FileReader(file));
+    fTimeSeriesDefinitions.readFrom(br);
+    br.close();
+  }
+
+  private void setupTimeSeriesInfo(String nickname) {
+    HashMap info = fTimeSeriesDefinitions.getDefinition(nickname);
+    fBrandNameLabel.setText(fRb.getString("BRAND_NAME") + " : "
+                            +
+                            info.get(UTimeSeriesDefinitionLog.STRING_BRAND_NAME).
+                            toString());
+    fFileNameLabel.setText(fRb.getString("FILENAME") + " : "
+                           +
+                           info.get(UTimeSeriesDefinitionLog.STRING_FILENAME).toString());
+    fStartTextField.setText(info.get(UTimeSeriesDefinitionLog.INT_START_STEP).
+                            toString());
+    fDaysTextField.setText(info.get(UTimeSeriesDefinitionLog.INT_MAX_DATE).
+                           toString());
+    fBoardPerDayTextField.setText(info.get(UTimeSeriesDefinitionLog.
+                                           INT_NO_OF_BOARDS_PER_DAY).toString());
+  }
+
+  private void setupDefaultInstitution() {
+    fInstitution = fParam.getInstitutionLog();
+    try {
+      URL institutionURL = getClass().getResource(UParameters.INSTITUTION);
+      BufferedReader br = new BufferedReader(new InputStreamReader(
+          institutionURL.openStream()));
+      fInstitution.readFrom(br);
+      br.close();
+    } catch (Exception ex) {
+      ex.printStackTrace();
+      System.exit(5);
+    }
+  }
+
+  //ウィンドウが閉じられたときに終了するようにオーバーライド
+  protected void processWindowEvent(WindowEvent e) {
+    super.processWindowEvent(e);
+    if (e.getID() == WindowEvent.WINDOW_CLOSING) {
+      setVisible(false);
+      dispose();
+    }
+  }
+
+  public static void main(String[] args) {
+    new UServerManagerParamDialog();
+  }
+}

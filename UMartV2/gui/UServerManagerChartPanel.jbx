@@ -1,0 +1,17 @@
+[PropertyInfo]
+fCurrentStep,int,false,false, , ,false,<デフォルト >
+fFutureLineColor,Color,false,false, , ,false,<デフォルト >
+fFutureLineName,String,false,false, , ,false,<デフォルト >
+fFuturePriceData,ArrayList,false,false, , ,false,<デフォルト >
+fGraph,UGraph,false,false, , ,false,<デフォルト >
+fGraphXrangePanel,UGraphXrangePanel,false,false, , ,false,<デフォルト >
+fGraphYrangePanel,UGraphYrangePanel,false,false, , ,false,<デフォルト >
+fSeperateWindowButton,USeperateWindowButton,false,false, , ,false,<デフォルト >
+fSpotLineColor,Color,false,false, , ,false,<デフォルト >
+fSpotLineName,String,false,false, , ,false,<デフォルト >
+fSpotPriceData,ArrayList,false,false, , ,false,<デフォルト >
+[IconNames]
+
+
+
+

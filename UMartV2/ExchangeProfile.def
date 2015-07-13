@@ -1,0 +1,7 @@
+CommandName ExchangeProfile
+return HashMap data 取引所情報 {
+	long cash 保有現金
+	long sell_position 取引所の管理下の売ポジション
+	long buy_position 取引所の管理下の買ポジション
+	int no_of_members 会員数
+}

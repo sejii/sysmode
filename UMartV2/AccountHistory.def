@@ -1,0 +1,11 @@
+CommandName AccountHistory
+param int user_id ユーザーID
+param long no_of_days 過去何日分の情報が必要か？（-1：全ての情報）
+return ArrayList array 過去の口座情報の配列 {
+	HashMap data 口座情報 {
+		int date 日付（U-Mart暦）
+		long unrealized_profit 未実現利益
+		long sell_position 買ポジションの合計
+		long buy_position 売ポジションの合計
+	}
+}

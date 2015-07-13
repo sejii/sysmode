@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--JBuilder XML Project-->
+<project>
+  <property category="debug.0" name="SmartStepRedefineClasses" value="0"/>
+  <property category="debug.0" name="SmartStepSkipStaticInitializers" value="0"/>
+  <property category="debug.0" name="SmartStepSkipSynthetics" value="0"/>
+  <property category="idl" name="ProcessIDL" value="false"/>
+  <property category="javaFormatting" name="arrayInitDataOnNewLine" value="0"/>
+  <property category="javaFormatting" name="catchOnNewLine" value="0"/>
+  <property category="javaFormatting" name="elseOnNewLine" value="0"/>
+  <property category="javaFormatting" name="extendsOnNewLine" value="0"/>
+  <property category="javaFormatting" name="finallyOnNewLine" value="0"/>
+  <property category="javaFormatting" name="implementsOnNewLine" value="0"/>
+  <property category="javaFormatting" name="whileOnNewLine" value="0"/>
+  <property category="javadoc" name="custom.tags.1" value="todo;a;To Do:"/>
+  <property category="runtime" name="DefaultConfiguration" value="-1"/>
+  <property category="runtime.0" name="BuildTargetOnRun" value="com.borland.jbuilder.build.ProjectBuilder$ProjectBuildAction;make"/>
+  <property category="runtime.0" name="ConfigurationName" value="UMartStandAloneデバッグ"/>
+  <property category="runtime.0" name="RunnableType" value="com.borland.jbuilder.runtime.ApplicationRunner"/>
+  <property category="runtime.0" name="application.class" value="serverSA.UMartStandAloneCUI"/>
+  <property category="serverservices" name="disabled.services" value="connector;jdatastore;sqlj"/>
+  <property category="serverservices" name="single.server.name" value="Tomcat 4.0"/>
+  <property category="sys" name="AuthorLabel" value="@author"/>
+  <property category="sys" name="BackupPath" value="bak"/>
+  <property category="sys" name="CheckStable" value="1"/>
+  <property category="sys" name="Company" value=""/>
+  <property category="sys" name="CompanyLabel" value="\u4f1a\u793e\u540d:"/>
+  <property category="sys" name="Copyright" value="Copyright (c) 2003"/>
+  <property category="sys" name="CopyrightLabel" value="\u8457\u4f5c\u6a29:"/>
+  <property category="sys" name="DefaultPath" value="."/>
+  <property category="sys" name="Description" value=""/>
+  <property category="sys" name="DescriptionLabel" value="\u8aac\u660e:"/>
+  <property category="sys" name="DocPath" value="doc"/>
+  <property category="sys" name="Encoding" value="SJIS"/>
+  <property category="sys" name="ExcludeClassEnabled" value="0"/>
+  <property category="sys" name="IncludeTestPath" value="1"/>
+  <property category="sys" name="InstanceVisibility" value="2"/>
+  <property category="sys" name="JDK" value="java version 1.4.2_01-b06"/>
+  <property category="sys" name="JvmVersion" value="1.2"/>
+  <property category="sys" name="LastTag" value="0"/>
+  <property category="sys" name="Libraries" value="MyStrategy"/>
+  <property category="sys" name="MakeStable" value="0"/>
+  <property category="sys" name="OutPath" value="classes"/>
+  <property category="sys" name="SourcePath" value=".;test"/>
+  <property category="sys" name="TestPath" value="test"/>
+  <property category="sys" name="Title" value=""/>
+  <property category="sys" name="TitleLabel" value="\u30bf\u30a4\u30c8\u30eb:"/>
+  <property category="sys" name="Version" value="1.0"/>
+  <property category="sys" name="VersionLabel" value="@version"/>
+  <property category="sys" name="WorkingDirectory" value="classes"/>
+  <property category="sys" name="palette.bean.chooser.beans" value="gui.UNewPanel;gui.UGraph;gui.UGraphYrangePanel;gui.UGraphXrangePanel;gui.USeperateWindowButton;gui.UUserChooser;classes.gui.UExperimentalSettingPanel;gui.UExperimentalSettingPanel;gui.URandomSeedPanel;"/>
+  <property category="sys" name="uidesign.size.gui.UAgentDialog" value="701,400"/>
+  <property category="sys" name="uidesign.size.gui.UBoardPanel" value="749,300"/>
+  <property category="sys" name="uidesign.size.gui.UChartPanel" value="735,282"/>
+  <property category="sys" name="uidesign.size.gui.UExperimentalSettingPanel" value="327,190"/>
+  <property category="sys" name="uidesign.size.gui.UGraphPanel" value="508,397"/>
+  <property category="sys" name="uidesign.size.gui.UGraphXrangePanel" value="187,92"/>
+  <property category="sys" name="uidesign.size.gui.UGraphYrangePanel" value="209,144"/>
+  <property category="sys" name="uidesign.size.gui.UNewParamDialog" value="332,430"/>
+  <property category="sys" name="uidesign.size.gui.UOrderResultPanel" value="759,300"/>
+  <property category="sys" name="uidesign.size.gui.UParamDialog" value="401,511"/>
+  <property category="sys" name="uidesign.size.gui.UPositionPanel" value="738,287"/>
+  <property category="sys" name="uidesign.size.gui.UProfitPanel" value="734,281"/>
+  <property category="sys" name="uidesign.size.gui.URandomSeedPanel" value="220,110"/>
+  <property category="sys" name="uidesign.size.gui.UServerManagerAgentMessageDisplay" value="701,615"/>
+  <property category="sys" name="uidesign.size.gui.UServerManagerBoardPanel" value="548,546"/>
+  <property category="sys" name="uidesign.size.gui.UServerManagerBoardTablePanel" value="477,464"/>
+  <property category="sys" name="uidesign.size.gui.UServerManagerChartPanel" value="707,514"/>
+  <property category="sys" name="uidesign.size.gui.UServerManagerExchangeInfoPanel" value="780,460"/>
+  <property category="sys" name="uidesign.size.gui.UServerManagerGraphPanel" value="727,540"/>
+  <property category="sys" name="uidesign.size.gui.UServerManagerMembersInfoTablePanel" value="679,532"/>
+  <property category="sys" name="uidesign.size.gui.UServerManagerOrderResultPanel" value="690,515"/>
+  <property category="sys" name="uidesign.size.gui.UServerManagerParamDialog" value="334,440"/>
+  <property category="sys" name="uidesign.size.gui.UServerManagerPositionPanel" value="687,520"/>
+  <property category="sys" name="uidesign.size.gui.UServerManagerProfitPanel" value="687,519"/>
+  <property category="sys" name="uidesign.size.gui.UServerManagerTopPanel" value="535,85"/>
+  <property category="sys" name="uidesign.size.gui.UServerSystemOutPanel" value="708,521"/>
+  <property category="sys" name="uidesign.size.gui.USystemOutPanel" value="699,281"/>
+  <property category="sys" name="uidesign.size.gui.UTabSettingDialog" value="160,251"/>
+  <property category="sys" name="uidesign.size.gui.UTopPanel" value="769,300"/>
+  <property category="sys" name="uidesign.size.gui.UUserChooser" value="427,93"/>
+  <node name="analysis" type="Package"/>
+  <file path="gui/UMessagePanel.java"/>
+  <file path="log/UOrderCommandLog.java"/>
+  <file path="gui/UServerManagerMessagePanel.java"/>
+</project>

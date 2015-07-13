@@ -1,0 +1,24 @@
+[PropertyInfo]
+CProtocol,CProtocolCore,false,false, , ,true,<デフォルト >
+fCommandHashMap,HashMap,false,false, , ,false,<デフォルト >
+fCProtocol,CProtocolCore,false,false, , ,false,<デフォルト >
+fGui,UServerManagerMainWindow,false,false, , ,false,<デフォルト >
+fHumanID,int,false,false, , ,false,<デフォルト >
+fInitDelay,int,false,false, , ,false,<デフォルト >
+fInterval,int,false,false, , ,false,<デフォルト >
+fName,String,false,false, , ,false,<デフォルト >
+fParam,UParameters,false,false, , ,false,<デフォルト >
+fParamDialog,UParamDialog,false,false, , ,false,<デフォルト >
+fServer,UMartNetwork,false,false, , ,false,<デフォルト >
+ftmpStep,int,false,false, , ,false,<デフォルト >
+fUGeneralStrategy,UGeneralStrategy,false,false, , ,false,<デフォルト >
+fUpdateTimer,javax.swing.Timer,false,false, , ,false,<デフォルト >
+interval,int,false,false, , ,true,<デフォルト >
+name,String,false,false, , ,true,<デフォルト >
+server,UMartNetwork,false,false, , ,true,<デフォルト >
+updateTimer,javax.swing.Timer,false,false, , ,true,<デフォルト >
+[IconNames]
+
+
+
+

@@ -1,0 +1,13 @@
+[PropertyInfo]
+fSelectUserLabel,JLabel,false,false, , ,false,<デフォルト >
+fTargetUserID,int,false,false, , ,false,<デフォルト >
+fUserList,JList,false,false, , ,false,<デフォルト >
+fUserListModel,DefaultListModel,false,false, , ,false,<デフォルト >
+fUserListScrollPane,JScrollPane,false,false, , ,false,<デフォルト >
+listModel,DefaultListModel,false,false, , ,true,<デフォルト >
+targetUserID,int,false,false, , ,true,<デフォルト >
+[IconNames]
+
+
+
+

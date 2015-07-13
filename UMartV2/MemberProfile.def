@@ -1,0 +1,32 @@
+CommandName MemberProfile
+param int target_user_id 対象会員のID
+return HashMap data 会員情報 {
+	String user_name 会員名
+	int status 取引可能(+1),取引不可能(-1)
+	HashMap yesterday_balance 前日収支 {
+		long initial_cash 初期所持金
+		long loan 借入金
+		long unrealized_profit 未実現損益
+		long margin 預託証拠金
+		long sum_of_fee 総支払い手数料
+		long sum_of_interest 総支払い金利
+		long cash 保有現金
+		long profit 実現損益
+	}
+	HashMap today_balance 当日収支 {
+		long initial_cash 初期所持金
+		long loan 借入金
+		long unrealized_profit 未実現損益
+		long margin 預託証拠金
+		long sum_of_fee 総支払い手数料
+		long sum_of_interest 総支払い金利
+		long cash 保有現金
+		long profit 実現損益
+	}
+	HashMap position ポジション {
+		long sum_of_sell_positions_until_yesterday 前日までの売ポジションの合計
+		long sum_of_buy_positions_until_yesterday 前日までの買ポジションの合計
+		long today_sell_positions 当日の売ポジションの合計
+		long today_buy_positions 当日の買ポジションの合計
+	}
+}

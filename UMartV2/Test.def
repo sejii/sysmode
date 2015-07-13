@@ -1,0 +1,14 @@
+CommandName Test
+param long order_id 注文IDに該当する注文情報
+param int test_int 整数テスト用
+return HashMap data 実行結果 {
+	int user_id ユーザーID
+	String brand_name 銘柄名
+	HashMap hash_data ハッシュデータ {
+		int value1 整数1
+		int value2 整数2
+	}
+	ArrayList array 配列 {
+		int array_value 配列データ
+	}
+}
