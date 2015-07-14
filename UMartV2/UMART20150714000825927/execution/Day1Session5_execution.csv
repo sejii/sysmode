@@ -1,0 +1,8 @@
+ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
+1,5,SRandomStrategy0001,23,2036,31,62
+1,5,SRsiStrategy2,24,2036,11,10
+1,5,RsiStrategy,25,2036,43,8
+1,5,AntiTrendStrategy2,26,2036,13,60
+1,5,TrendStrategy,27,2036,37,58
+1,5,URandomAgent,28,2036,35,57
+1,5,SRandomStrategy0000,29,2036,26,61

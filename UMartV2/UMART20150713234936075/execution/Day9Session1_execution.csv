@@ -1,0 +1,4 @@
+ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
+9,1,AntiTrendStrategy1,383,2187,27,813
+9,1,AntiTrendStrategy2,384,2187,13,814
+9,1,TrendStrategy,385,2187,40,812

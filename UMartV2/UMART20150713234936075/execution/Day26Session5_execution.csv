@@ -1,0 +1,12 @@
+ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
+26,5,TrendStrategy,1231,2180,30,2512
+26,5,SMovingAverageStrategy2,1232,2180,37,2523
+26,5,SMovingAverageStrategy3,1233,2180,34,2524
+26,5,SMovingAverageStrategy1,1234,2180,35,2522
+26,5,SRandomStrategy0002,1235,2180,15,2504
+26,5,SRandomStrategy0001,1236,2180,10,2490
+26,5,SRandomStrategy0000,1237,2180,23,2478
+26,5,AntiTrendStrategy1,1238,2180,17,2513
+26,5,SRsiStrategy1,1239,2180,22,2519
+26,5,RsiStrategy,1240,2180,23,2518
+26,5,SRandomStrategy0000,1241,2180,26,2515

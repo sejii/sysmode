@@ -1,0 +1,9 @@
+ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
+27,8,TrendStrategy,1302,2185,46,2647
+27,8,SRandomStrategy0001,1303,2185,21,2651
+27,8,URandomAgent,1304,2185,21,2646
+27,8,AntiTrendStrategy1,1305,2185,42,2637
+27,8,AntiTrendStrategy1,1306,2185,11,2648
+27,8,AntiTrendStrategy2,1307,2185,50,2649
+27,8,SRandomStrategy0000,1308,2185,20,2650
+27,8,SRandomStrategy0002,1309,2185,49,2652

@@ -1,0 +1,12 @@
+ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
+3,7,DayTradeStrategy1,146,1985,18,256
+3,7,DayTradeStrategy2,147,1985,14,258
+3,7,DayTradeStrategy1,148,1985,15,229
+3,7,DayTradeStrategy2,149,1985,23,231
+3,7,DayTradeStrategy2,150,1985,10,272
+3,7,DayTradeStrategy1,151,1985,11,270
+3,7,AntiTrendStrategy1,152,1985,30,275
+3,7,SRandomStrategy0001,153,1985,47,300
+3,7,SMovingAverageStrategy1,154,1985,22,303
+3,7,SMovingAverageStrategy2,155,1985,17,304
+3,7,SMovingAverageStrategy3,156,1985,35,305

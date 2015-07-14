@@ -1,0 +1,7 @@
+ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
+22,3,SFSpreadStrategy2,993,2179,25,2056
+22,3,TrendStrategy,994,2179,14,2048
+22,3,SFSpreadStrategy1,995,2179,18,2055
+22,3,AntiTrendStrategy1,996,2179,3,2049
+22,3,AntiTrendStrategy2,997,2179,35,2050
+22,3,RsiStrategy,998,2179,19,2054

@@ -1,0 +1,4 @@
+ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
+9,6,DayTradeStrategy2,406,2204,13,844
+9,6,DayTradeStrategy1,407,2204,24,854
+9,6,URandomAgent,408,2204,37,863

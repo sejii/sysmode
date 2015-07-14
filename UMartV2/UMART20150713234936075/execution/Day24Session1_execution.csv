@@ -1,0 +1,7 @@
+ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
+24,1,TrendStrategy,1092,2156,43,2222
+24,1,URandomAgent,1093,2156,41,2221
+24,1,DayTradeStrategy2,1094,2156,15,2236
+24,1,SFSpreadStrategy1,1095,2156,41,2231
+24,1,SRandomStrategy0000,1096,2156,37,2225
+24,1,SRandomStrategy0002,1097,2156,21,2227

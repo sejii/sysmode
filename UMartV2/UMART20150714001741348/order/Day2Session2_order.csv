@@ -1,0 +1,13 @@
+Date,Session,RealTime,LoginName,Command,OrderID,BrandName,NewRepay,SellBuy,MarketLimit,Price,Volume,RandomNumber
+2,2,Tue Jul 14 00:17:52 JST 2015,URandomAgent,Request,121,j30,1,2,2,1992,23,162912754
+2,2,Tue Jul 14 00:17:52 JST 2015,TrendStrategy,Request,122,j30,1,1,2,1959,29,818693069
+2,2,Tue Jul 14 00:17:52 JST 2015,AntiTrendStrategy1,Request,123,j30,1,2,2,1948,40,1184143835
+2,2,Tue Jul 14 00:17:53 JST 2015,AntiTrendStrategy2,Request,124,j30,1,2,2,1961,39,410943565
+2,2,Tue Jul 14 00:17:53 JST 2015,SRandomStrategy0000,Request,125,j30,1,2,2,2029,12,1385753324
+2,2,Tue Jul 14 00:17:53 JST 2015,SRandomStrategy0001,Request,126,j30,1,1,2,1985,22,1233308008
+2,2,Tue Jul 14 00:17:53 JST 2015,SRandomStrategy0002,Request,127,j30,1,1,2,1999,33,840115328
+2,2,Tue Jul 14 00:17:53 JST 2015,RsiStrategy,Request,128,j30,1,2,2,1985,41,1474241772
+2,2,Tue Jul 14 00:17:53 JST 2015,DayTradeStrategy1,Request,129,j30,1,2,2,1954,39,1895913584
+2,2,Tue Jul 14 00:17:53 JST 2015,DayTradeStrategy1,Request,130,j30,1,1,2,1993,17,1376826901
+2,2,Tue Jul 14 00:17:53 JST 2015,DayTradeStrategy2,Request,131,j30,1,2,2,1954,39,1984652857
+2,2,Tue Jul 14 00:17:53 JST 2015,DayTradeStrategy2,Request,132,j30,1,1,2,1993,41,412901507

@@ -1,0 +1,5 @@
+ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
+2,3,AntiTrendStrategy2,63,1965,41,136
+2,3,DayTradeStrategy1,64,1965,4,140
+2,3,RsiStrategy,65,1965,14,128
+2,3,TrendStrategy,66,1965,23,134

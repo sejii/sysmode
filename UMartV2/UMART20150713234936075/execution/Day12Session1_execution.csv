@@ -1,0 +1,6 @@
+ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
+12,1,SMovingAverageStrategy3,465,2276,18,998
+12,1,SMovingAverageStrategy1,466,2276,37,996
+12,1,SMovingAverageStrategy2,467,2276,11,997
+12,1,SRandomStrategy0000,468,2276,46,993
+12,1,SRandomStrategy0001,469,2276,20,994

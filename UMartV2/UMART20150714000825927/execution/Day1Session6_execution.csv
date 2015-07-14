@@ -1,0 +1,5 @@
+ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
+1,6,SFSpreadStrategy1,30,2015,12,72
+1,6,SFSpreadStrategy2,31,2015,28,73
+1,6,AntiTrendStrategy2,32,2015,1,19
+1,6,SFSpreadStrategy1,33,2015,39,51

@@ -1,0 +1,5 @@
+ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
+28,6,TrendStrategy,1357,2165,43,2728
+28,6,DayTradeStrategy1,1358,2165,4,2708
+28,6,DayTradeStrategy2,1359,2165,3,2710
+28,6,SRandomStrategy0000,1360,2165,36,2731

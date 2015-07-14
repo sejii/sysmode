@@ -1,0 +1,4 @@
+ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
+7,4,AntiTrendStrategy2,340,2158,35,674
+7,4,TrendStrategy,341,2158,18,692
+7,4,SRandomStrategy0001,342,2158,17,694

@@ -1,0 +1,6 @@
+ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
+15,3,SRandomStrategy0001,607,2254,40,1301
+15,3,SRandomStrategy0000,608,2254,36,1300
+15,3,SRandomStrategy0001,609,2254,2,1283
+15,3,MovingAverageStrategy,610,2254,38,1303
+15,3,URandomAgent,611,2254,40,1299

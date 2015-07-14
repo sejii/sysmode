@@ -1,0 +1,4 @@
+ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
+24,8,RsiStrategy,1145,2160,43,2335
+24,8,SFSpreadStrategy2,1146,2160,14,2309
+24,8,SFSpreadStrategy1,1147,2160,29,2339

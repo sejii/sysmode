@@ -1,4 +1,5 @@
 LoginName,Password,Attribute,Connection,Access(Allow_All)(CHART:BOARD:ORDER:ORDER_RESULT:PROFIT:POSITION:STDOUT),RealName,SystemParameters,Seed,InitialCash,TradingUnit,FeePerUnit,MarginRate,MaxLoan,Interest
+U17_2,mypasswd1,Machine,Local,,strategy_v2.U17_2,,1,1000000000,1000,0,300000,30000000,0.1
 URandomAgent,mypasswd1,Machine,Local,,strategy_v2.URandomAgent,,1,1000000000,1000,0,300000,30000000,0.1
 UMovingAverageAgent,mypasswd2,Machine,Local,,strategy_v2.UMovingAverageAgent,,2,1000000000,1000,0,300000,30000000,0.1
 TrendStrategy,passwd1,Machine,Local,,strategy.TrendStrategy,,1,1000000000,1000,0,300000,30000000,0.1
