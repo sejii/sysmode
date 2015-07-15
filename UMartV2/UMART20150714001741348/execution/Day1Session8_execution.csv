@@ -1,5 +1,0 @@
-ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
-1,8,SFSpreadStrategy2,46,2017,37,103
-1,8,SRandomStrategy0001,47,2017,11,96
-1,8,RsiStrategy,48,2017,7,98
-1,8,URandomAgent,49,2017,41,91

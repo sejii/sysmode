@@ -1,8 +1,0 @@
-ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
-1,2,TrendStrategy,1,2020,27,17
-1,2,SRandomStrategy0002,2,2020,41,22
-1,2,URandomAgent,3,2020,19,16
-1,2,SRsiStrategy3,4,2020,2,26
-1,2,AntiTrendStrategy2,5,2020,30,4
-1,2,AntiTrendStrategy1,6,2020,40,3
-1,2,AntiTrendStrategy1,7,2020,19,18

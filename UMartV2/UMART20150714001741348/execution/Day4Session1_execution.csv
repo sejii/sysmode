@@ -1,6 +1,0 @@
-ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
-4,1,AntiTrendStrategy2,165,2003,10,328
-4,1,RsiStrategy,166,2003,20,332
-4,1,AntiTrendStrategy1,167,2003,35,327
-4,1,SRandomStrategy0002,168,2003,26,331
-4,1,SRandomStrategy0000,169,2003,39,329

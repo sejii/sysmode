@@ -1,5 +1,0 @@
-ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
-7,8,AntiTrendStrategy2,350,2158,46,731
-7,8,AntiTrendStrategy1,351,2158,1,730
-7,8,TrendStrategy,352,2158,12,721
-7,8,URandomAgent,353,2158,33,728

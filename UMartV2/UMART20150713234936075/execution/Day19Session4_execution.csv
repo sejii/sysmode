@@ -1,8 +1,0 @@
-ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
-19,4,URandomAgent,821,2237,20,1697
-19,4,TrendStrategy,822,2237,12,1698
-19,4,SMovingAverageStrategy3,823,2237,36,1705
-19,4,SRandomStrategy0002,824,2237,19,1692
-19,4,SRandomStrategy0002,825,2237,9,1678
-19,4,AntiTrendStrategy1,826,2237,46,1699
-19,4,RsiStrategy,827,2237,50,1704

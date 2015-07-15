@@ -1,5 +1,0 @@
-ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
-30,5,SRandomStrategy0000,1453,2077,20,2950
-30,5,TrendStrategy,1454,2077,40,2947
-30,5,AntiTrendStrategy2,1455,2077,39,2949
-30,5,DayTradeStrategy2,1456,2077,21,2920

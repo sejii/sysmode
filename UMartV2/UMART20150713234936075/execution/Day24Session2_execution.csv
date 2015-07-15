@@ -1,7 +1,0 @@
-ContractDate,ContractSession,LoginName,ContractID,ContractPrice,ContractVolume,OrderID
-24,2,AntiTrendStrategy2,1098,2156,46,2240
-24,2,SRsiStrategy3,1099,2156,22,2246
-24,2,DayTradeStrategy2,1100,2156,16,2236
-24,2,SFSpreadStrategy1,1101,2156,29,2247
-24,2,SRandomStrategy0000,1102,2156,19,2241
-24,2,SRandomStrategy0001,1103,2156,36,2242
