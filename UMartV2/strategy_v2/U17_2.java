@@ -254,19 +254,19 @@ public class U17_2 extends UAgent {
 		forms[0] = new UOrderForm();
 		int buysell = UOrderForm.NONE;
 		int movingaveragebuysell = chooseAction(futurePrices);
-		// 現物価格の増減率を計算する．
+		// 現物価格の増減率を計算する．(値が-1であれば1節前の値を入れる)
 		int spotPrice = getLatestPrice(spotPrices);
 		if (spotPrice == UOrderForm.INVALID_PRICE)
 			spotPrice = prevspotPrice;
 		double spotpricechange = (spotPrice - prevspotPrice) * 100.0
 				/ prevspotPrice;
-		// 先物価格の増減率を計算する．
+		// 先物価格の増減率を計算する．(値が-1であれば1節前の値を入れる)
 		int futurePrice = getLatestPrice(futurePrices);
 		if (futurePrice == UOrderForm.INVALID_PRICE)
 			futurePrice = prevspotPrice;
 		double futurepricechange = (futurePrice - prevfuturePrice) * 100.0
 				/ prevfuturePrice;
-		// 5節以降であれば変化率のカウントを開始
+		// 5節以降であれば変化率のカウントを開始(取引開始時は変動が大きいため取り除く)
 		if ((day - 1) * noOfSessionsPerDay + session > 4) {
 			// 現在,1節前,2節前,3節前の増減率を計算し、1~3節前と現在の増減率の変化のペアをカウント
 			int spotstate = determinChangeCase(spotpricechange);
@@ -285,7 +285,7 @@ public class U17_2 extends UAgent {
 			pre3futurechangecounter[pre3futurestate][futurestate] += 1;
 			println("現物区分" + spotstate);
 			println("先物区分" + futurestate);
-			// 2節前からの変化率を用いて現物価格の次の変化を予想
+			// 2節前から現在までの変化の場合分けを用いて現物価格の次の変化を予想
 			double[] nextspotstate = { 1.0, 1.0, 1.0 };
 			for (int i = 0; i < CASE_NUMBER; i++) {
 				nextspotstate[i] *= calcurateProbability(pre1spotchangecounter, i,
@@ -299,7 +299,7 @@ public class U17_2 extends UAgent {
 				nextspotstate[i] *= calcurateProbability(pre3spotchangecounter, i,
 						pre2spotstate);
 			}
-			// 2節前からの変化率を用いて先物価格の次の変化を予想
+			// 2節前から現在までの変化の場合分けを用いて先物価格の次の変化を予想
 			double[] nextfuturestate = { 1.0, 1.0, 1.0 };
 			for (int i = 0; i < CASE_NUMBER; i++) {
 				nextfuturestate[i] *= calcurateProbability(pre1futurechangecounter, i,
@@ -326,7 +326,7 @@ public class U17_2 extends UAgent {
 		}
 		// 1節前の現物価格を保存
 		prevspotPrice = spotPrice;
-		// 1節前の先物価格を保存(1節前が-1であればそのまま)
+		// 1節前の先物価格を保存
 		prevfuturePrice = futurePrice;
 
 		// 　現物価格の3節前までの増減情報を更新する．
@@ -419,7 +419,7 @@ public class U17_2 extends UAgent {
 					return i;
 			}
 		}
-		/*
+		/* リストで計算する方法
 		 * ArrayList<Integer> fmaxList = new ArrayList<Integer>();
 		 * ArrayList<Integer> smaxList = new ArrayList<Integer>(); for(int
 		 * i=0;i<CASE_NUMBER; i++){ if(fpricechange[i] == fmax){ fmaxList.add(i); }
@@ -433,7 +433,7 @@ public class U17_2 extends UAgent {
 	}
 
 	/**
-	 * 前の節(prestate)の増減率をもとに現在の増減率(state)の確率を計算
+	 * 前の節(prestate)の増減率を基に現在の増減率(state)の確率を計算
 	 * 
 	 * @param counter
 	 * @param state
