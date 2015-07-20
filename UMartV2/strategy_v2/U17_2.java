@@ -37,7 +37,7 @@ public class U17_2 extends UAgent {
 	public static final int DEFAULT_MEDIUM_TERM = 16;
 
 	/** 注文量の最大値のデフォルト値 */
-	public static final int DEFAULT_MAX_QUANT = 100;
+	public static final int DEFAULT_MAX_QUANT = 300;
 
 	/** 注文量の最小値のデフォルト値 */
 	public static final int DEFAULT_MIN_QUANT = 10;
@@ -287,29 +287,29 @@ public class U17_2 extends UAgent {
 			// 2節前から現在までの変化の場合分けを用いて現物価格の次の変化を予想
 			double[] nextspotstate = { 1.0, 1.0, 1.0 };
 			for (int i = 0; i < CASE_NUMBER; i++) {
-				nextspotstate[i] *= calcurateProbability(pre1spotchangecounter, i,
+				nextspotstate[i] += calcurateProbability(pre1spotchangecounter, i,
 						spotstate);
 			}
 			for (int i = 0; i < CASE_NUMBER; i++) {
-				nextspotstate[i] *= calcurateProbability(pre2spotchangecounter, i,
+				nextspotstate[i] += calcurateProbability(pre2spotchangecounter, i,
 						pre1spotstate);
 			}
 			for (int i = 0; i < CASE_NUMBER; i++) {
-				nextspotstate[i] *= calcurateProbability(pre3spotchangecounter, i,
+				nextspotstate[i] += calcurateProbability(pre3spotchangecounter, i,
 						pre2spotstate);
 			}
 			// 2節前から現在までの変化の場合分けを用いて先物価格の次の変化を予想
 			double[] nextfuturestate = { 1.0, 1.0, 1.0 };
 			for (int i = 0; i < CASE_NUMBER; i++) {
-				nextfuturestate[i] *= calcurateProbability(pre1futurechangecounter, i,
+				nextfuturestate[i] += calcurateProbability(pre1futurechangecounter, i,
 						futurestate);
 			}
 			for (int i = 0; i < CASE_NUMBER; i++) {
-				nextfuturestate[i] *= calcurateProbability(pre2futurechangecounter, i,
+				nextfuturestate[i] += calcurateProbability(pre2futurechangecounter, i,
 						pre1futurestate);
 			}
 			for (int i = 0; i < CASE_NUMBER; i++) {
-				nextfuturestate[i] *= calcurateProbability(pre3futurechangecounter, i,
+				nextfuturestate[i] += calcurateProbability(pre3futurechangecounter, i,
 						pre2futurestate);
 			}
 			println("現物価格変化率" + spotpricechange + "%");
@@ -374,6 +374,7 @@ public class U17_2 extends UAgent {
 			latestPrice = fNominalPrice;
 		}
 		forms[0].setPrice(determinePrice(forms[0].getBuySell(), futurePrices));
+		//forms[0].setQuantity(fMinQuant + rand.nextInt(fMaxQuant - fMinQuant + 1));
 		forms[0].setQuantity(determineQuantity(futurePrices, forms[0].getBuySell()));
 		println(" => " + forms[0].getBuySellByString() + ", price="
 				+ forms[0].getPrice() + ", quantity=" + forms[0].getQuantity());
@@ -410,7 +411,19 @@ public class U17_2 extends UAgent {
 				if (fpricechange[i] == fmax)
 					return i;
 			}
-		} else if (smaxcount == 1) {
+		} else if(fmaxcount == 2){
+			if(fpricechange[UOrderForm.SELL] == fpricechange[UOrderForm.BUY] && smaxcount == 1) {
+					for (int i = 0; i < CASE_NUMBER; i++) {
+						if (spricechange[i] == smax)
+							return i;
+					}
+			} else if(fpricechange[UOrderForm.NONE] == fmax){
+				for (int i = 1; i < CASE_NUMBER; i++) {
+					if (fpricechange[i] == fmax)
+						return i;
+				}
+			}
+		} else{
 			for (int i = 0; i < CASE_NUMBER; i++) {
 				if (spricechange[i] == smax)
 					return i;
@@ -482,6 +495,7 @@ public class U17_2 extends UAgent {
   	}
   	return price;
   }
+
 
   private int determineQuantity(int[]prices, int action){
 		Random rand = getRandom();
