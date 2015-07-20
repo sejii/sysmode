@@ -23,7 +23,6 @@
  */
 package strategy_v2;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class U17_2 extends UAgent {
@@ -139,7 +138,7 @@ public class U17_2 extends UAgent {
 
 	/**
 	 * コンストラクタです．
-	 * 
+	 *
 	 * @param loginName
 	 *          ログイン名
 	 * @param passwd
@@ -169,7 +168,7 @@ public class U17_2 extends UAgent {
 
 	/**
 	 * 短期の節数を返します．
-	 * 
+	 *
 	 * @return 短期の節数
 	 */
 	public int getShortTerm() {
@@ -178,7 +177,7 @@ public class U17_2 extends UAgent {
 
 	/**
 	 * 中期の節数を返します．
-	 * 
+	 *
 	 * @return 中期の節数
 	 */
 	public int getMediumTerm() {
@@ -187,7 +186,7 @@ public class U17_2 extends UAgent {
 
 	/**
 	 * 最小注文数量を返します．
-	 * 
+	 *
 	 * @return 最小注文数量
 	 */
 	public int getMinQuant() {
@@ -196,7 +195,7 @@ public class U17_2 extends UAgent {
 
 	/**
 	 * 最大注文数量を返します．
-	 * 
+	 *
 	 * @return 最大注文数量
 	 */
 	public int getMaxQuant() {
@@ -205,7 +204,7 @@ public class U17_2 extends UAgent {
 
 	/**
 	 * 最大ポジションを返します．
-	 * 
+	 *
 	 * @return 最大ポジション
 	 */
 	public int getMaxPosition() {
@@ -214,7 +213,7 @@ public class U17_2 extends UAgent {
 
 	/**
 	 * 市場価格が未定のときの注文価格を返します．
-	 * 
+	 *
 	 * @return 市場価格が未定のときの注文価格
 	 */
 	public int getNominalPrice() {
@@ -223,7 +222,7 @@ public class U17_2 extends UAgent {
 
 	/**
 	 * 注文票を作成します．
-	 * 
+	 *
 	 * @param day
 	 *          日
 	 * @param session
@@ -375,9 +374,7 @@ public class U17_2 extends UAgent {
 			latestPrice = fNominalPrice;
 		}
 		forms[0].setPrice(determinePrice(forms[0].getBuySell(), futurePrices));
-		forms[0]
-				.setQuantity(fMinQuant + rand.nextInt(fMaxQuant - fMinQuant + 1));
-
+		forms[0].setQuantity(determineQuantity(futurePrices, forms[0].getBuySell()));
 		println(" => " + forms[0].getBuySellByString() + ", price="
 				+ forms[0].getPrice() + ", quantity=" + forms[0].getQuantity());
 		println("");
@@ -387,7 +384,7 @@ public class U17_2 extends UAgent {
 
 	/**
 	 * 次の注文区分を確率モデルを基に決定する
-	 * 
+	 *
 	 * @param spricechange
 	 * @param fpricechange
 	 * @return 注文区分
@@ -434,7 +431,7 @@ public class U17_2 extends UAgent {
 
 	/**
 	 * 前の節(prestate)の増減率を基に現在の増減率(state)の確率を計算
-	 * 
+	 *
 	 * @param counter
 	 * @param state
 	 * @param prestate
@@ -453,7 +450,7 @@ public class U17_2 extends UAgent {
 
 	/**
 	 * 価格変化率から「下落」か「変化なし」か「上昇」か場合分けする
-	 * 
+	 *
 	 * @param pricechange
 	 * @return 場合
 	 */
@@ -486,9 +483,32 @@ public class U17_2 extends UAgent {
   	return price;
   }
 
+  private int determineQuantity(int[]prices, int action){
+		Random rand = getRandom();
+		double shortTerm = calculateMovingAverage(prices, fShortTerm);
+		double mediumTerm = calculateMovingAverage(prices, fMediumTerm);
+		//int quantity = fMinQuant + rand.nextInt(fMaxQuant - fMinQuant + 1 );
+		int quantity = 0;
+		if (action == UOrderForm.BUY){
+			if (shortTerm > mediumTerm+10){
+				quantity = fMinQuant + rand.nextInt(fMaxQuant - fMinQuant + 1 ) + 50;
+			}else{
+				quantity = fMinQuant + rand.nextInt(fMaxQuant - fMinQuant + 1 );
+			}
+		}
+		 if(action == UOrderForm.SELL){
+			if(shortTerm+10 < mediumTerm){
+				quantity = fMinQuant + rand.nextInt(100) + 50;
+			}else{
+				quantity = fMinQuant + rand.nextInt(fMaxQuant - fMinQuant + 1 );
+			}
+		}
+		return quantity;
+	}
+
 	/**
 	 * 売買区分を選んで返します．
-	 * 
+	 *
 	 * @param prices
 	 *          価格系列．ただし，prices[prices.length]を直近としてください．
 	 * @return 売買区分
@@ -517,7 +537,7 @@ public class U17_2 extends UAgent {
 	/**
 	 * 直近からterm節分の価格系列の移動平均値を計算して返します． ただし，価格が成立していない場合は，UOrderForm.INVALID_PRICE
 	 * (=-1)を返します．
-	 * 
+	 *
 	 * @param prices
 	 *          価格系列．ただし，prices[prices.length - 1]を直近としてください．
 	 * @param term
@@ -537,7 +557,7 @@ public class U17_2 extends UAgent {
 
 	/**
 	 * エージェントのシステムパラメータを設定します．
-	 * 
+	 *
 	 * @param args
 	 *          システムパラメータ
 	 */
