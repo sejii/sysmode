@@ -46,7 +46,7 @@ public class UAgent extends UBaseAgent {
 
   /** 先物価格系列の長さ */
   public static final int NO_OF_FUTURE_PRICES = 60;
-
+	
   /**
    * コンストラクタです．
    * @param loginName ログイン名
@@ -57,7 +57,7 @@ public class UAgent extends UBaseAgent {
   public UAgent(String loginName, String passwd, String realName, int seed) {
 	  super(loginName, passwd, realName, seed);
 	}
-
+	
   /**
    * 現物価格系列を返します．
    * @return 現物価格系列
@@ -168,7 +168,7 @@ public class UAgent extends UBaseAgent {
     int[] futurePrices = getFuturePrices();
     int position = getPosition();
     long money = getMoney();
-    UOrderForm[] forms = makeOrderForms(day, session, maxDays, noOfSessionsPerDay,
+    UOrderForm[] forms = makeOrderForms(day, session, maxDays, noOfSessionsPerDay, 
                                         spotPrices, futurePrices, position, money);
     for (int i = 0; i < forms.length; ++i) {
     	orderRequest(forms[i]);
@@ -199,7 +199,7 @@ public class UAgent extends UBaseAgent {
       System.err.println(status.getErrorMessage() + " in UAgent.orderRequest");
     }
   }
-
+  
   /**
    * 決算日までの節数を計算します．
    * @param day 日
@@ -226,7 +226,7 @@ public class UAgent extends UBaseAgent {
     }
     return UOrderForm.INVALID_PRICE;
   }
-
+  
   /**
    * 注文票を作成します．
    * デフォルトでは「注文しない」注文票を返すだけなので，子クラスで必ずオーバーライドしてください．
@@ -235,18 +235,18 @@ public class UAgent extends UBaseAgent {
    * @param maxDays　取引日数
    * @param noOfSessionsPerDay 1日の節数
    * @param spotPrices 現物価格系列．spotPrices[0]からspotPrices[119]までの120節分のデータが格納されています．spotPrices[119]が直近の価格です．ただし，価格が成立していない場合，-1が入っているので注意してください．
-   * @param futurePrices 先物価格系列．futurePrices[0]からfuturePrices[59]までの60節分のデータが格納されています．futurePrices[59]が直近の価格です．ただし，価格が成立していない場合，-1が入っているので注意してください．また，取引開始節より前は現物価格が格納されています．
+   * @param futurePrices 現物価格系列．spotPrices[0]からspotPrices[119]までの120節分のデータが格納されています．spotPrices[119]が直近の価格です．ただし，価格が成立していない場合，-1が入っているので注意してください．また，取引開始節より前は現物価格が格納されています．
    * @param position ポジション．正ならば買い越し(ロング・ポジション)，負ならば売り越し（ショート・ポジション）を表します．
    * @param money 現金残高．型がlongであることに注意してください．
-   * @return UOrderForm[] 注文票の配列
+   * @return UOrderForm[] 注文票の配列 
    */
-  public UOrderForm[] makeOrderForms(int day, int session,
-  	                                  int maxDays, int noOfSessionsPerDay,
-  		                                int[] spotPrices, int[] futurePrices,
+  public UOrderForm[] makeOrderForms(int day, int session, 
+  	                                  int maxDays, int noOfSessionsPerDay, 
+  		                                int[] spotPrices, int[] futurePrices, 
   		                                int position, long money) {
   	UOrderForm[] forms = new UOrderForm [1];
   	forms[0] = new UOrderForm();
   	return forms;
   }
-
+	
 }

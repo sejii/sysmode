@@ -23,19 +23,19 @@
  */
 package strategy_v2;
 
-import java.util.Random;
+import java.util.*;
 
 /**
  * 先物価格を用いる移動平均エージェントクラスです．
  */
 public class UMovingAverageAgent extends UAgent {
-
+	
 	/** 短期の節数のデフォルト値 */
 	public static final int DEFAULT_SHORT_TERM = 8;
-
+	
 	/** 中期の節数のデフォルト値 */
 	public static final int DEFAULT_MEDIUM_TERM = 16;
-
+  
   /** 注文数量の最大値のデフォルト値 */
   public static final int DEFAULT_MAX_QUANT = 50;
 
@@ -47,7 +47,7 @@ public class UMovingAverageAgent extends UAgent {
 
 	/** 短期の節数 */
 	private int fShortTerm = DEFAULT_SHORT_TERM;
-
+	
 	/** 中期の節数 */
 	private int fMediumTerm = DEFAULT_MEDIUM_TERM;
 
@@ -59,25 +59,25 @@ public class UMovingAverageAgent extends UAgent {
 
   /** 売/買ポジションの最大値 */
   private int fMaxPosition = DEFAULT_MAX_POSITION;
-
+  
   /** 短期の節数のプロパティ名(ShortTerm) */
   public static final String SHORT_TERM_KEY = "ShortTerm";
 
   /** 中期の節数のプロパティ名(MediumTerm) */
   public static final String MEDIUM_TERM_KEY = "MediumTerm";
-
+  
   /** 注文数量の最大値のプロパティ名(MaxQuant) */
 	public static final String MAX_QUANT_KEY = "MaxQuant";
 
 	/** 注文数量の最小値のプロパティ名(MinQuant) */
 	public static final String MIN_QUANT_KEY = "MinQuant";
-
+	
 	/** 売/買ポジションの最大値のプロパティ名(MaxPosition) */
 	public static final String MAX_POSITION_KEY = "MaxPosition";
-
+  
   /** 1節前における短期移動平均値 */
 	private double fPreviousShortTermMovingAverage = UOrderForm.INVALID_PRICE;
-
+	
 	/** 1節前における中期移動平均値 */
 	private double fPreviousMediumTermMovingAverage = UOrderForm.INVALID_PRICE;
 
@@ -99,7 +99,7 @@ public class UMovingAverageAgent extends UAgent {
 	public int getShortTerm() {
 		return fShortTerm;
 	}
-
+	
 	/**
 	 * 中期の節数を返します．
 	 * @return 中期の節数
@@ -140,14 +140,14 @@ public class UMovingAverageAgent extends UAgent {
    * @param maxDays 取引日数
    * @param noOfSessionsPerDay 1日の節数
    * @param spotPrices 現物価格系列．spotPrices[0]からspotPrices[119]までの120節分のデータが格納されています．spotPrices[119]が直近の価格です．ただし，価格が成立していない場合，-1が入っているので注意してください．
-   * @param futurePrices 先物価格系列．futurePrices[0]からfuturePrices[59]までの60節分のデータが格納されています．futurePrices[59]が直近の価格です．ただし，価格が成立していない場合，-1が入っているので注意してください．また，取引開始節より前は現物価格が格納されています．
+   * @param futuresPrices 現物価格系列．spotPrices[0]からspotPrices[119]までの120節分のデータが格納されています．spotPrices[119]が直近の価格です．ただし，価格が成立していない場合，-1が入っているので注意してください．また，取引開始節より前は現物価格が格納されています．
    * @param position ポジション．正ならば買い越し(ロング・ポジション)，負ならば売り越し（ショート・ポジション）を表します．
    * @param money 現金残高．型がlongであることに注意．
-   * @return UOrderForm[] 注文票の配列
+   * @return UOrderForm[] 注文票の配列 
    */
-  public UOrderForm[] makeOrderForms(int day, int session,
-                                      int maxDays, int noOfSessionsPerDay,
-                                      int[] spotPrices, int[] futuresPrices,
+  public UOrderForm[] makeOrderForms(int day, int session, 
+                                      int maxDays, int noOfSessionsPerDay, 
+                                      int[] spotPrices, int[] futuresPrices, 
                                       int position, long money) {
   	Random rand = getRandom();
   	UOrderForm[] forms = new UOrderForm[1];
@@ -156,7 +156,7 @@ public class UMovingAverageAgent extends UAgent {
     forms[0].setBuySell(chooseAction(prices));
     println("");
     print("day=" + day + ", session=" + session
-          + ", futures=" + prices[prices.length - 1]
+          + ", futures=" + prices[prices.length - 1] 
           + ", shortTerm=" + fPreviousShortTermMovingAverage
           + ", mediumTerm=" + fPreviousMediumTermMovingAverage);
     if (forms[0].getBuySell() == UOrderForm.NONE) {
@@ -176,10 +176,10 @@ public class UMovingAverageAgent extends UAgent {
     forms[0].setPrice(determinePrice(forms[0].getBuySell(), prices));
     forms[0].setQuantity(fMinQuant + rand.nextInt(fMaxQuant - fMinQuant + 1));
     print(" => " + forms[0].getBuySellByString() + ", price=" + forms[0].getPrice()
-           + ", quantity=" + forms[0].getQuantity());
+           + ", quantity=" + forms[0].getQuantity()); 
     return forms;
   }
-
+  
   /**
    * 注文価格を決定して返します．
    * @param action 売買区分
@@ -199,7 +199,7 @@ public class UMovingAverageAgent extends UAgent {
   	}
   	return price;
   }
-
+  
   /**
    * 売買区分を選んで返します．
    * @param prices 価格系列．ただし，prices[prices.length]を直近としてください．
@@ -225,7 +225,7 @@ public class UMovingAverageAgent extends UAgent {
   	fPreviousMediumTermMovingAverage = mediumTermMovingAverage;
   	return action;
   }
-
+  
   /**
    * 直近からterm節分の価格系列の移動平均値を計算して返します．
    * ただし，価格が成立していない場合は，UOrderForm.INVALID_PRICE (=-1)を返します．
