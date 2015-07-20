@@ -31,10 +31,10 @@ public class U17_2 extends UAgent {
 	public static final int DEFAULT_WIDTH_OF_PRICE = 20;
 
 	/** 短期の節数のデフォルト値 */
-	public static final int DEFAULT_SHORT_TERM = 8;
+	public static final int DEFAULT_SHORT_TERM = 6;
 
 	/** 中期の節数のデフォルト値 */
-	public static final int DEFAULT_MEDIUM_TERM = 16;
+	public static final int DEFAULT_MEDIUM_TERM = 12;
 
 	/** 注文量の最大値のデフォルト値 */
 	public static final int DEFAULT_MAX_QUANT = 300;
@@ -272,13 +272,13 @@ public class U17_2 extends UAgent {
 			int pre1spotstate = determinChangeCase(prevspotpricechange[0]);
 			int pre2spotstate = determinChangeCase(prevspotpricechange[1]);
 			int pre3spotstate = determinChangeCase(prevspotpricechange[2]);
-			pre1spotchangecounter[pre1spotstate][spotstate] += 1;
-			pre2spotchangecounter[pre2spotstate][spotstate] += 1;
-			pre3spotchangecounter[pre3spotstate][spotstate] += 1;
 			int futurestate = determinChangeCase(futurepricechange);
 			int pre1futurestate = determinChangeCase(prevfuturepricechange[0]);
 			int pre2futurestate = determinChangeCase(prevfuturepricechange[1]);
 			int pre3futurestate = determinChangeCase(prevfuturepricechange[2]);
+			pre1spotchangecounter[pre1spotstate][spotstate] += 1;
+			pre2spotchangecounter[pre2spotstate][spotstate] += 1;
+			pre3spotchangecounter[pre3spotstate][spotstate] += 1;
 			pre1futurechangecounter[pre1futurestate][futurestate] += 1;
 			pre2futurechangecounter[pre2futurestate][futurestate] += 1;
 			pre3futurechangecounter[pre3futurestate][futurestate] += 1;
@@ -374,8 +374,8 @@ public class U17_2 extends UAgent {
 			latestPrice = fNominalPrice;
 		}
 		forms[0].setPrice(determinePrice(forms[0].getBuySell(), futurePrices));
-		//forms[0].setQuantity(fMinQuant + rand.nextInt(fMaxQuant - fMinQuant + 1));
-		forms[0].setQuantity(determineQuantity(futurePrices, forms[0].getBuySell()));
+		forms[0].setQuantity(fMinQuant + rand.nextInt(fMaxQuant - fMinQuant + 1) 
+				+ (int)Math.log(Math.abs(fPreviousShortTermMovingAverage -fPreviousMediumTermMovingAverage)) * fMinQuant);
 		println(" => " + forms[0].getBuySellByString() + ", price="
 				+ forms[0].getPrice() + ", quantity=" + forms[0].getQuantity());
 		println("");
@@ -495,30 +495,6 @@ public class U17_2 extends UAgent {
   	}
   	return price;
   }
-
-
-  private int determineQuantity(int[]prices, int action){
-		Random rand = getRandom();
-		double shortTerm = calculateMovingAverage(prices, fShortTerm);
-		double mediumTerm = calculateMovingAverage(prices, fMediumTerm);
-		//int quantity = fMinQuant + rand.nextInt(fMaxQuant - fMinQuant + 1 );
-		int quantity = 0;
-		if (action == UOrderForm.BUY){
-			if (shortTerm > mediumTerm+10){
-				quantity = fMinQuant + rand.nextInt(fMaxQuant - fMinQuant + 1 ) + 50;
-			}else{
-				quantity = fMinQuant + rand.nextInt(fMaxQuant - fMinQuant + 1 );
-			}
-		}
-		 if(action == UOrderForm.SELL){
-			if(shortTerm+10 < mediumTerm){
-				quantity = fMinQuant + rand.nextInt(100) + 50;
-			}else{
-				quantity = fMinQuant + rand.nextInt(fMaxQuant - fMinQuant + 1 );
-			}
-		}
-		return quantity;
-	}
 
 	/**
 	 * 売買区分を選んで返します．
